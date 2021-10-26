@@ -1,0 +1,17 @@
+version: "3.7"
+services:
+  postgres:
+    container_name: wgmi-postgres
+    ports:
+      - "5432:5432"
+    image: postgres:12.6-alpine
+    restart: always
+    environment:
+      POSTGRES_DATABASE: wgmi-dev
+      POSTGRES_USER: wgmi-dev
+      POSTGRES_PASSWORD: wgmi-dev
+    volumes:
+      - postgres:/var/lib/postgres
+
+volumes:
+  postgres:

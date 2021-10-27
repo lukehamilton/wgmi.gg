@@ -46,7 +46,10 @@ const List = () => {
                       className="group relative inline-flex items-center text-sm font-medium rounded-md text-gray-700  hover:text-purple-500 focus:outline-none"
                       href={p[link.key]}
                     >
-                      <FontAwesomeIcon icon={link.icon} className="mr-2" />
+                      <FontAwesomeIcon
+                        icon={link.icon}
+                        className="mr-2 h-4 w-4"
+                      />
                       <span>{p[link.key]}</span>
                     </a>
                   </li>
@@ -59,7 +62,10 @@ const List = () => {
                       href={p.metadata[key]}
                     >
                       {icons.hasOwnProperty(key) ? (
-                        <FontAwesomeIcon icon={icons[key]} className="mr-2" />
+                        <FontAwesomeIcon
+                          icon={icons[key]}
+                          className="mr-2 h-4 w-4"
+                        />
                       ) : (
                         <span>{key.replace(/_/g, " ")} - </span>
                       )}

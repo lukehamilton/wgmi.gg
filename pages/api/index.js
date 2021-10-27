@@ -53,7 +53,13 @@ const Query = objectType({
     t.list.field("projects", {
       type: "Project",
       resolve: (_, args) => {
-        return prisma.project.findMany();
+        return prisma.project.findMany({
+          orderBy: [
+            {
+              name: "asc",
+            },
+          ],
+        });
       },
     });
   },

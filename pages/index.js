@@ -1,5 +1,7 @@
 import Head from "next/head";
 import List from "../components/list";
+import { PROJECTS } from "../data/queries";
+import { initializeApollo, addApolloState } from "../lib/apollo-client";
 
 export default function Home() {
   return (
@@ -7,22 +9,47 @@ export default function Home() {
       <Head>
         <title>wgmi</title>
         <link rel="icon" href="/favicon.ico" />
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-D6RF6JTC14"
+        ></script>
+
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-D6RF6JTC14');
+          `,
+          }}
+        />
       </Head>
 
-      <main className="flex flex-col w-full flex-1 px-20 py-8">
-        <div className="mb-4 flex flex-row">
-          <p className="text-4xl font-serif">
-            wgmi<span className="text-4xl text-gray-300">.gg</span>
-          </p>
-          <p className="text-sm text-gray-500 self-end mb-1 ml-2">
-            official links for projects
-          </p>
+      <main className="flex flex-col w-full flex-1 p-4 sm:px-20 sm:py-8">
+        <div className="mb-4 flex flex-row items-center justify-between">
+          <div className="flex flex-col sm:flex-row">
+            <p className="text-4xl font-serif">
+              wgmi<span className="text-4xl text-gray-300">.gg</span>
+            </p>
+            <p className="text-sm text-gray-500 self-end mb-1 sm:ml-2">
+              official links for projects
+            </p>
+          </div>
+          <a
+            href="https://airtable.com/shrnnT4MVlDMaRO4I"
+            target="_blank"
+            className="text-sm text-gray-500 hover:text-purple-500 cursor-pointer"
+          >
+            send feedback
+          </a>
         </div>
 
         <List />
       </main>
 
-      <footer className="flex items-center justify-center w-full h-24 border-t">
+      <footer className="flex items-center justify-center w-full h-12 border-t">
         <p className="text-sm text-gray-400">
           created and mainted by{" "}
           <a
@@ -36,4 +63,12 @@ export default function Home() {
       </footer>
     </div>
   );
+}
+
+export async function getServerSideProps(ctx) {
+  const apolloClient = initializeApollo(null);
+  await apolloClient.query({
+    query: PROJECTS,
+  });
+  return addApolloState(apolloClient, { props: {} });
 }

@@ -2,7 +2,11 @@ import { useQuery } from "@apollo/client";
 import { PROJECTS } from "../data/queries";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBrowser, faShip } from "@fortawesome/pro-regular-svg-icons";
+import {
+  faBrowser,
+  faShip,
+  faExternalLink,
+} from "@fortawesome/pro-regular-svg-icons";
 import {
   faTwitter,
   faDiscord,
@@ -39,40 +43,52 @@ const List = () => {
                 <h4 className="text-2xl">{p.name}</h4>
               </div>
               <ul className="">
-                {links.map((link) => (
-                  <li>
-                    <a
-                      target="_blank"
-                      className="group relative inline-flex items-center text-sm font-medium rounded-md text-gray-700  hover:text-purple-500 focus:outline-none"
-                      href={p[link.key]}
-                    >
-                      <FontAwesomeIcon
-                        icon={link.icon}
-                        className="mr-2 h-4 w-4"
-                      />
-                      <span>{p[link.key]}</span>
-                    </a>
-                  </li>
-                ))}
-                {Object.keys(p.metadata).map((key) => (
-                  <li>
-                    <a
-                      target="_blank"
-                      className="group relative inline-flex items-center text-sm font-medium rounded-md text-gray-700  hover:text-purple-500 focus:outline-none"
-                      href={p.metadata[key]}
-                    >
-                      {icons.hasOwnProperty(key) ? (
-                        <FontAwesomeIcon
-                          icon={icons[key]}
-                          className="mr-2 h-4 w-4"
-                        />
-                      ) : (
-                        <span>{key.replace(/_/g, " ")} - </span>
-                      )}
-                      <span>{p.metadata[key]}</span>
-                    </a>
-                  </li>
-                ))}
+                {links.map((link) => {
+                  if (p[link.key]) {
+                    return (
+                      <li>
+                        <a
+                          target="_blank"
+                          className="group relative inline-flex items-center text-sm font-medium rounded-md text-gray-700  hover:text-purple-500 focus:outline-none"
+                          href={p[link.key]}
+                        >
+                          <FontAwesomeIcon
+                            icon={link.icon}
+                            className="mr-2 h-4 w-4"
+                          />
+                          <span>{p[link.key]}</span>
+                        </a>
+                      </li>
+                    );
+                  }
+                })}
+                {Object.keys(p.metadata).map((key) => {
+                  if (key === "links") {
+                    return (
+                      <>
+                        {p.metadata.links.map((link) => (
+                          <li>
+                            <a
+                              target="_blank"
+                              className="group relative inline-flex items-center text-sm font-medium rounded-md text-gray-700  hover:text-purple-500 focus:outline-none"
+                              href={link.value}
+                            >
+                              <FontAwesomeIcon
+                                icon={
+                                  icons.hasOwnProperty(link.type)
+                                    ? icons[link.type]
+                                    : faExternalLink
+                                }
+                                className="mr-2 h-4 w-4"
+                              />
+                              {link.value}
+                            </a>
+                          </li>
+                        ))}
+                      </>
+                    );
+                  }
+                })}
               </ul>
             </li>
           ))}

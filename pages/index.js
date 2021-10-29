@@ -64,8 +64,7 @@ export default function Home() {
     </div>
   );
 }
-
-export async function getServerSideProps(ctx) {
+export async function getStaticProps() {
   const apolloClient = initializeApollo(null);
   await apolloClient.query({
     query: PROJECTS,

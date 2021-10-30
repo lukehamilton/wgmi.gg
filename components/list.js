@@ -1,6 +1,5 @@
-import { useQuery } from "@apollo/client";
 import { PROJECTS } from "../data/queries";
-
+import { useQuery } from "@apollo/client";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBrowser,

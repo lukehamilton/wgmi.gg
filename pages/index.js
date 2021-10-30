@@ -45,7 +45,6 @@ export default function Home() {
             send feedback
           </a>
         </div>
-
         <List />
       </main>
 
@@ -64,7 +63,8 @@ export default function Home() {
     </div>
   );
 }
-export async function getStaticProps() {
+
+export async function getStaticProps(context) {
   const apolloClient = initializeApollo(null);
   await apolloClient.query({
     query: PROJECTS,

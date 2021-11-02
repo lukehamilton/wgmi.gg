@@ -19,7 +19,7 @@ model Project {
   submitterId  Int
   id           Int            @id @default(autoincrement())
   name         String
-  slug         String
+  slug         String         @unique
   submitter    User           @relation(fields: [submitterId], references: [id])
   website      String?
   twitter      String?

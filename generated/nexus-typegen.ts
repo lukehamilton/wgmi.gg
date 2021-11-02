@@ -76,6 +76,7 @@ export interface NexusGenFieldTypes {
     website: string | null; // String
   }
   Query: { // field return type
+    project: NexusGenRootTypes['Project'] | null; // Project
     projects: Array<NexusGenRootTypes['Project'] | null> | null; // [Project]
   }
   User: { // field return type
@@ -96,6 +97,7 @@ export interface NexusGenFieldTypeNames {
     website: 'String'
   }
   Query: { // field return type name
+    project: 'Project'
     projects: 'Project'
   }
   User: { // field return type name
@@ -105,6 +107,11 @@ export interface NexusGenFieldTypeNames {
 }
 
 export interface NexusGenArgTypes {
+  Query: {
+    project: { // args
+      slug?: string | null; // String
+    }
+  }
 }
 
 export interface NexusGenAbstractTypeMembers {

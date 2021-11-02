@@ -14,3 +14,18 @@ export const PROJECTS = gql`
     }
   }
 `;
+
+export const PROJECT = gql`
+  query project($slug: String) {
+    project(slug: $slug) {
+      id
+      name
+      slug
+      website
+      twitter
+      discord
+      opensea
+      metadata
+    }
+  }
+`;

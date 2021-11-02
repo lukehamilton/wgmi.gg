@@ -16,6 +16,7 @@ type Project {
 }
 
 type Query {
+  project(slug: String): Project
   projects: [Project]
 }
 

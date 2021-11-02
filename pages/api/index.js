@@ -62,6 +62,18 @@ const Query = objectType({
         });
       },
     });
+    t.field("project", {
+      type: "Project",
+      args: {
+        slug: stringArg(),
+      },
+      resolve: async (_, { slug }) => {
+        const project = await prisma.project.findUnique({
+          where: { slug },
+        });
+        return project;
+      },
+    });
   },
 });
 

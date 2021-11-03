@@ -4,6 +4,7 @@ export default function ThemeToggle(props) {
   const { theme, setTheme } = useTheme();
 
   const toggle = (e) => {
+    console.log(process.env.NODE_ENV);
     e.stopPropagation();
     if (!document.documentElement.classList.contains("dark")) {
       setTheme("dark");

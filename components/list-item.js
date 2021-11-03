@@ -35,10 +35,10 @@ const ListItem = ({ project, mainPage = false }) => {
           className="h-8 w-8 mr-2"
         />
         {mainPage ? (
-          <Link href={`/projects/${project.slug}`}>
-            <h4 className="text-2xl hover:text-purple-500 cursor-pointer">
+          <Link passHref href={`/projects/${project.slug}`}>
+            <a className="text-2xl hover:text-purple-500 cursor-pointer">
               {project.name}
-            </h4>
+            </a>
           </Link>
         ) : (
           <h4 className="text-2xl">{project.name}</h4>

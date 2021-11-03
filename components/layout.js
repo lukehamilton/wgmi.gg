@@ -1,8 +1,10 @@
 import Head from "next/head";
+import nightwind from "nightwind/helper";
+import ThemeToggle from "./theme-toggle";
 
 const Layout = ({ children }) => {
   return (
-    <div className="flex flex-col min-h-screen py-2">
+    <div className="flex flex-col min-h-screen bg-white py-2">
       <Head>
         <title>wgmi</title>
         <link rel="icon" href="/favicon.ico" />
@@ -22,6 +24,7 @@ gtag('config', 'G-GDL78VBY4Q');
         `,
           }}
         />
+        <script dangerouslySetInnerHTML={{ __html: nightwind.init() }} />
       </Head>
 
       <main className="flex flex-col w-full flex-1 p-4 sm:px-20 sm:py-8">
@@ -34,13 +37,16 @@ gtag('config', 'G-GDL78VBY4Q');
               official links for projects
             </p>
           </div>
-          <a
-            href="https://airtable.com/shrnnT4MVlDMaRO4I"
-            target="_blank"
-            className="text-sm text-gray-500 hover:text-purple-500 cursor-pointer"
-          >
-            send feedback
-          </a>
+          <div className="flex flex-row items-center">
+            <ThemeToggle size="h-7" />
+            <a
+              href="https://airtable.com/shrnnT4MVlDMaRO4I"
+              target="_blank"
+              className="ml-4 text-sm text-gray-500 hover:text-purple-500 cursor-pointer"
+            >
+              send feedback
+            </a>
+          </div>
         </div>
         {children}
       </main>

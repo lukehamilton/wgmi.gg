@@ -4,7 +4,7 @@ import ThemeToggle from "./theme-toggle";
 
 const Layout = ({ children }) => {
   return (
-    <div className="flex flex-col min-h-screen bg-white py-2">
+    <div className="flex flex-col min-h-screen bg-gray-100 py-2">
       <Head>
         <title>wgmi</title>
         <link rel="icon" href="/favicon.ico" />

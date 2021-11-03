@@ -5,6 +5,7 @@ import {
   faBrowser,
   faShip,
   faExternalLink,
+  faCode,
 } from "@fortawesome/pro-regular-svg-icons";
 import {
   faTwitter,
@@ -24,6 +25,7 @@ const icons = {
   medium: faMedium,
   opensea: faShip,
   instagram: faInstagram,
+  contract: faCode,
 };
 
 const ListItem = ({ project, mainPage = false }) => {
@@ -81,6 +83,9 @@ const ListItem = ({ project, mainPage = false }) => {
                         className="mr-2 h-4 w-4"
                       />
                       {link.value}
+                      {link.name && (
+                        <span className="text-sm font-medium">{`(${link.name})`}</span>
+                      )}
                     </a>
                   </li>
                 ))}

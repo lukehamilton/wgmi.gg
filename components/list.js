@@ -1,17 +1,16 @@
 import { PROJECTS } from "../data/queries";
 import { useQuery } from "@apollo/client";
 import ListItem from "./list-item";
+import Card from "./card";
 
 const List = () => {
   const { loading, error, data, fetchMore } = useQuery(PROJECTS);
   return (
     <div className="overflow-hidden sm:rounded-md">
       {data && (
-        <ul role="list">
+        <ul role="list" className="space-y-3">
           {data.projects.map((project) => (
-            <li className="text-left mb-4">
-              <ListItem project={project} mainPage={true} />
-            </li>
+            <Card project={project} mainPage={true} />
           ))}
         </ul>
       )}
@@ -20,3 +19,9 @@ const List = () => {
 };
 
 export default List;
+
+{
+  /* <li className="text-left mb-4">
+              <ListItem project={project} mainPage={true} />
+            </li> */
+}

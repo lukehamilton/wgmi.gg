@@ -8,7 +8,7 @@ const List = () => {
   return (
     <div className="overflow-hidden sm:rounded-md">
       {data && (
-        <ul role="list" className="space-y-3">
+        <ul role="list" className="space-y-8">
           {data.projects.map((project) => (
             <Card project={project} mainPage={true} key={project.slug} />
           ))}
@@ -19,9 +19,3 @@ const List = () => {
 };
 
 export default List;
-
-{
-  /* <li className="text-left mb-4">
-              <ListItem project={project} mainPage={true} />
-            </li> */
-}

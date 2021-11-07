@@ -1,4 +1,3 @@
-import { PaperClipIcon } from "@heroicons/react/solid";
 import Link from "next/link";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -52,16 +51,32 @@ export default function Card({ project, mainPage = false }) {
                 </div>
                 <div className="mt-6 sm:flex-1 sm:min-w-0 sm:flex sm:items-center sm:justify-end sm:space-x-6 sm:pb-1">
                   <div className="sm:hidden md:block mt-6 min-w-0 flex-1">
-                    <h1 className="text-2xl font-bold text-gray-900 truncate">
-                      {project.name}
-                    </h1>
+                    {mainPage ? (
+                      <Link passHref href={`/projects/${project.slug}`}>
+                        <a className="text-2xl font-bold text-gray-900 hover:text-indigo-500 truncate">
+                          {project.name}
+                        </a>
+                      </Link>
+                    ) : (
+                      <h1 className="text-2xl font-bold text-gray-900 truncate">
+                        {project.name}
+                      </h1>
+                    )}
                   </div>
                 </div>
               </div>
               <div className="hidden sm:block md:hidden mt-6 min-w-0 flex-1">
-                <h1 className="text-2xl font-bold text-gray-900 truncate">
-                  {project.name}
-                </h1>
+                {mainPage ? (
+                  <Link passHref href={`/projects/${project.slug}`}>
+                    <a className="text-2xl font-bold text-gray-900 hover:text-indigo-500 truncate">
+                      {project.name}
+                    </a>
+                  </Link>
+                ) : (
+                  <h1 className="text-2xl font-bold text-gray-900 truncate">
+                    {project.name}
+                  </h1>
+                )}
               </div>
             </div>
           </div>
@@ -81,7 +96,11 @@ export default function Card({ project, mainPage = false }) {
                     {link.name}
                   </dt>
                   <dd className="mt-1  sm:mt-0 sm:col-span-2">
-                    <a className="cursor-pointer text-sm text-gray-900 hover:text-indigo-500">
+                    <a
+                      href={project[link.key]}
+                      target="_blank"
+                      className="cursor-pointer text-sm text-gray-900 hover:text-indigo-500"
+                    >
                       {project[link.key]}
                     </a>
                   </dd>
@@ -107,7 +126,11 @@ export default function Card({ project, mainPage = false }) {
                         {link.name}
                       </dt>
                       <dd className="mt-1  sm:mt-0 sm:col-span-2">
-                        <a className="cursor-pointer text-sm text-gray-900 hover:text-indigo-500">
+                        <a
+                          href={link.value}
+                          target="_blank"
+                          className="cursor-pointer text-sm text-gray-900 hover:text-indigo-500"
+                        >
                           {link.value}
                         </a>
                       </dd>

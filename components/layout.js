@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Head from "next/head";
 import nightwind from "nightwind/helper";
 import ThemeToggle from "./theme-toggle";
@@ -28,11 +29,14 @@ gtag('config', 'G-GDL78VBY4Q');
       </Head>
 
       <main className="flex flex-col w-full flex-1 p-4 sm:px-20 sm:py-8">
-        <div className="mb-4 flex flex-row items-center justify-between">
+        <div className="mb-8 flex flex-row items-center justify-between">
           <div className="flex flex-col sm:flex-row">
-            <p className="text-4xl font-serif">
-              wgmi<span className="text-4xl text-gray-300">.gg</span>
-            </p>
+            <Link passHref href="/">
+              <a className="text-4xl hover:text-indigo-500 font-serif">
+                wgmi
+                <span className="text-4xl text-gray-300">.gg</span>
+              </a>
+            </Link>
             <p className="text-sm text-gray-500 self-end mb-1 sm:ml-2">
               official links for projects
             </p>

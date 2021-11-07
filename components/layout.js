@@ -28,7 +28,7 @@ gtag('config', 'G-GDL78VBY4Q');
         <script dangerouslySetInnerHTML={{ __html: nightwind.init() }} />
       </Head>
 
-      <main className="flex flex-col w-full flex-1 p-4 sm:px-20 sm:py-8">
+      <main className="flex flex-col w-full sm:max-w-4xl mx-auto flex-1 p-4 sm:px-20 sm:py-8">
         <div className="mb-8 flex flex-row items-center justify-between">
           <div className="flex flex-col sm:flex-row">
             <Link passHref href="/">

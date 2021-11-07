@@ -91,11 +91,11 @@ export default function Card({ project, mainPage = false }) {
                   <dt className="flex items-center text-sm font-medium text-gray-500">
                     <FontAwesomeIcon
                       icon={link.icon}
-                      className="mr-2 h-4 w-4"
+                      className="mr-2 h-4 w-4 flex-shrink-0"
                     />
                     {link.name}
                   </dt>
-                  <dd className="mt-1  sm:mt-0 sm:col-span-2">
+                  <dd className="mt-1  sm:mt-0 sm:col-span-2 break-normal">
                     <a
                       href={project[link.key]}
                       target="_blank"
@@ -121,15 +121,15 @@ export default function Card({ project, mainPage = false }) {
                               ? icons[link.type]
                               : faExternalLink
                           }
-                          className="mr-2 h-4 w-4"
+                          className="mr-2 h-4 w-4 flex-shrink-0"
                         />
                         {link.name}
                       </dt>
-                      <dd className="mt-1  sm:mt-0 sm:col-span-2">
+                      <dd className="mt-1  sm:mt-0 sm:col-span-2 break-all">
                         <a
                           href={link.value}
                           target="_blank"
-                          className="cursor-pointer text-sm text-gray-900 hover:text-indigo-500"
+                          className="cursor-pointer  text-sm text-gray-900 hover:text-indigo-500"
                         >
                           {link.value}
                         </a>

@@ -7,6 +7,8 @@ import {
   faShip,
   faExternalLink,
   faCode,
+  faExchange,
+  faMapMarker,
 } from "@fortawesome/pro-regular-svg-icons";
 import {
   faTwitter,
@@ -27,6 +29,8 @@ const icons = {
   opensea: faShip,
   instagram: faInstagram,
   contract: faCode,
+  dex: faExchange,
+  sandbox: faMapMarker,
 };
 
 export default function Card({ project, mainPage = false }) {

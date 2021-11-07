@@ -63,7 +63,7 @@ const ListItem = ({ project, mainPage = false }) => {
             );
           }
         })}
-        {Object.keys(project.metadata).map((key) => {
+        {/* {Object.keys(project.metadata).map((key) => {
           if (key === "links") {
             return (
               <>
@@ -92,7 +92,7 @@ const ListItem = ({ project, mainPage = false }) => {
               </>
             );
           }
-        })}
+        })} */}
       </ul>
     </>
   );

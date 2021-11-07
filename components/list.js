@@ -10,7 +10,7 @@ const List = () => {
       {data && (
         <ul role="list" className="space-y-3">
           {data.projects.map((project) => (
-            <Card project={project} mainPage={true} />
+            <Card project={project} mainPage={true} key={project.slug} />
           ))}
         </ul>
       )}

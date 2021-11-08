@@ -8,6 +8,7 @@ export default function Project({ slug }) {
   const { loading, error, data } = useQuery(PROJECT, {
     variables: { slug: slug },
   });
+
   return <Layout>{data && <ListItem project={data.project} />}</Layout>;
 }
 

@@ -1,5 +1,5 @@
 import { ApolloServer } from "apollo-server-micro";
-import { NextApiHandler } from "next";
+// import { NextApiHandler } from "next";
 import { GraphQLJSONObject } from "graphql-type-json";
 
 import {

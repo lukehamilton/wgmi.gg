@@ -2,7 +2,8 @@ import { PROJECTS, PROJECT } from "../../data/queries";
 import { useQuery } from "@apollo/client";
 import { initializeApollo, addApolloState } from "../../lib/apollo-client";
 import Layout from "../../components/layout";
-import ListItem from "../../components/list-item";
+// import ListItem from "../../components/list-item";
+import Card from "../../components/card";
 
 export default function Project({ slug }) {
   const { loading, error, data } = useQuery(PROJECT, {

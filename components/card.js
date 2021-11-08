@@ -15,6 +15,7 @@ import {
   faDiscord,
   faMedium,
   faInstagram,
+  faTelegram,
 } from "@fortawesome/free-brands-svg-icons";
 
 const links = [
@@ -31,6 +32,7 @@ const icons = {
   contract: faCode,
   dex: faExchange,
   sandbox: faMapMarker,
+  telegram: faTelegram,
 };
 
 export default function Card({ project, mainPage = false }) {

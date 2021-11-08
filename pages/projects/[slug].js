@@ -10,7 +10,7 @@ export default function Project({ slug }) {
     variables: { slug: slug },
   });
 
-  return <Layout>{data && <ListItem project={data.project} />}</Layout>;
+  return <Layout>{data && <Card project={data.project} />}</Layout>;
 }
 
 export async function getStaticPaths() {

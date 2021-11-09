@@ -9,6 +9,7 @@ import {
   faCode,
   faExchange,
   faMapMarker,
+  faVoteYea,
 } from "@fortawesome/pro-regular-svg-icons";
 import {
   faTwitter,
@@ -33,6 +34,7 @@ const icons = {
   dex: faExchange,
   sandbox: faMapMarker,
   telegram: faTelegram,
+  snapshot: faVoteYea,
 };
 
 export default function Card({ project, mainPage = false }) {

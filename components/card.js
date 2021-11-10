@@ -10,6 +10,7 @@ import {
   faExchange,
   faMapMarker,
   faVoteYea,
+  faWallet,
 } from "@fortawesome/pro-regular-svg-icons";
 import {
   faTwitter,
@@ -35,6 +36,7 @@ const icons = {
   sandbox: faMapMarker,
   telegram: faTelegram,
   snapshot: faVoteYea,
+  wallet: faWallet,
 };
 
 export default function Card({ project, mainPage = false }) {

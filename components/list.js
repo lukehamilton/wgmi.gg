@@ -7,7 +7,9 @@ const List = () => {
   const [query, setQuery] = useState("");
   const { loading, error, data, fetchMore } = useQuery(PROJECTS);
   const items = data
-    ? data.projects.filter((i) => i.name.toLowerCase().includes(query))
+    ? data.projects.filter((i) =>
+        i.name.toLowerCase().includes(query.toLowerCase())
+      )
     : [];
   return (
     <>

@@ -39,6 +39,7 @@ const icons = {
   snapshot: faVoteYea,
   wallet: faWallet,
   team: faUserFriends,
+  twitter: faTwitter,
 };
 
 export default function Card({ project, mainPage = false }) {

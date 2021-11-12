@@ -52,6 +52,7 @@ gtag('config', 'G-GDL78VBY4Q');
             </a>
           </div>
         </div>
+
         {children}
       </main>
 

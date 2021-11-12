@@ -139,7 +139,7 @@ export default function Card({ project, mainPage = false }) {
                         <a
                           href={link.value}
                           target="_blank"
-                          className="cursor-pointer  text-sm text-gray-900 hover:text-indigo-500"
+                          className="cursor-pointer text-sm text-gray-900 hover:text-indigo-500"
                         >
                           {link.value}
                         </a>

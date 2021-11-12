@@ -12,6 +12,7 @@ import {
   faVoteYea,
   faWallet,
   faUserFriends,
+  faGem,
 } from "@fortawesome/pro-regular-svg-icons";
 import {
   faTwitter,
@@ -40,6 +41,7 @@ const icons = {
   wallet: faWallet,
   team: faUserFriends,
   twitter: faTwitter,
+  gem: faGem,
 };
 
 export default function Card({ project, mainPage = false }) {

@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "chain": "hardhat node --network hardhat --no-deploy"
+    "chain": "hardhat node --network hardhat"
   },
   "devDependencies": {
     "@nomiclabs/hardhat-ethers": "^2.0.5",

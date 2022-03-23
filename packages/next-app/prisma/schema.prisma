@@ -8,26 +8,41 @@ datasource db {
 }
 
 model User {
-  address        String @id @unique
-  projects       Project[]
-  links          Link[]
-  verifications  Verification[]
+  id      Int    @id @default(autoincrement())
+  address String
+
+  Project      Project[]
+  Verification Verification[]
 }
 
 model Project {
-  id                Int            @id @default(autoincrement())
-  submitterAddress  String
-  submitter         User           @relation(fields: [submitterAddress], references: [address])
-  name              String
-  slug              String         @unique
-  links             Link[]
+  submitterId  Int
+  id           Int            @id @default(autoincrement())
+  name         String
+  slug         String         @unique
+  submitter    User           @relation(fields: [submitterId], references: [id])
+  website      String?
+  twitter      String?
+  discord      String?
+  opensea      String?
+  metadata     Json?
+  Verification Verification[]
 }
 
-model Link {
-  id                Int    @id @default(autoincrement())
-  url               String @unique
-  projectId         Int
-  project           Project @relation(fields: [projectId], references: [id])
+model Strategy {
+  id       Int     @id @default(autoincrement())
+  contract String
+  name     String
+  Asset    Asset[]
+}
+
+model Asset {
+  id             Int           @id @default(autoincrement())
+  quantity       Int
+  strategy       Strategy      @relation(fields: [strategyId], references: [id])
+  Verification   Verification? @relation(fields: [verificationId], references: [id])
+  verificationId Int?
+  strategyId     Int
 }
 
 model Verification {

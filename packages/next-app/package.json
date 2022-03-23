@@ -20,7 +20,7 @@
     "@fortawesome/pro-solid-svg-icons": "^5.15.4",
     "@fortawesome/react-fontawesome": "^0.1.16",
     "@heroicons/react": "^1.0.4",
-    "@prisma/client": "^3.10.0",
+    "@prisma/client": "^3.11.0",
     "@walletconnect/web3-provider": "^1.7.4",
     "apollo-server-micro": "^3.3.0",
     "deepmerge": "^4.2.2",
@@ -43,6 +43,7 @@
   "devDependencies": {
     "autoprefixer": "^10.4.2",
     "postcss": "^8.4.8",
+    "prisma": "^3.11.0",
     "tailwindcss": "^3.0.23"
   },
   "packageManager": "yarn@3.1.0"

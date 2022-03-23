@@ -1,0 +1,49 @@
+{
+  "name": "@verified-links/next-app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next dev",
+    "postinstall_c": "prisma generate",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@apollo/client": "^3.4.16",
+    "@fortawesome/fontawesome-svg-core": "^1.2.36",
+    "@fortawesome/free-brands-svg-icons": "^5.15.4",
+    "@fortawesome/free-regular-svg-icons": "^5.15.4",
+    "@fortawesome/free-solid-svg-icons": "^5.15.4",
+    "@fortawesome/pro-duotone-svg-icons": "^5.15.4",
+    "@fortawesome/pro-light-svg-icons": "^5.15.4",
+    "@fortawesome/pro-regular-svg-icons": "^5.15.4",
+    "@fortawesome/pro-solid-svg-icons": "^5.15.4",
+    "@fortawesome/react-fontawesome": "^0.1.16",
+    "@heroicons/react": "^1.0.4",
+    "@prisma/client": "^3.10.0",
+    "@walletconnect/web3-provider": "^1.7.4",
+    "apollo-server-micro": "^3.3.0",
+    "deepmerge": "^4.2.2",
+    "ethers": "^5.6.1",
+    "graphql": "^15.6.1",
+    "graphql-type-json": "^0.3.2",
+    "lodash.isequal": "^4.5.0",
+    "micro": "^9.3.4",
+    "micro-cors": "^0.1.1",
+    "next": "latest",
+    "next-themes": "^0.0.15",
+    "nexus": "^1.1.0",
+    "nightwind": "^1.1.12",
+    "prisma": "^3.10.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "sass": "^1.43.4",
+    "web3modal": "^1.9.5"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.2",
+    "postcss": "^8.4.8",
+    "tailwindcss": "^3.0.23"
+  },
+  "packageManager": "yarn@3.1.0"
+}

@@ -5,27 +5,27 @@ import {
   faBrowser,
   faShip,
   faExternalLink,
-  faCode,
+  faCode
 } from "@fortawesome/pro-regular-svg-icons";
 import {
   faTwitter,
   faDiscord,
   faMedium,
-  faInstagram,
+  faInstagram
 } from "@fortawesome/free-brands-svg-icons";
 
 const links = [
   { key: "website", icon: faBrowser },
   { key: "twitter", icon: faTwitter },
   { key: "discord", icon: faDiscord },
-  { key: "opensea", icon: faShip },
+  { key: "opensea", icon: faShip }
 ];
 
 const icons = {
   medium: faMedium,
   opensea: faShip,
   instagram: faInstagram,
-  contract: faCode,
+  contract: faCode
 };
 
 const ListItem = ({ project, mainPage = false }) => {
@@ -47,7 +47,7 @@ const ListItem = ({ project, mainPage = false }) => {
         )}
       </div>
       <ul className="">
-        {links.map((link) => {
+        {links.map(link => {
           if (project[link.key]) {
             return (
               <li>

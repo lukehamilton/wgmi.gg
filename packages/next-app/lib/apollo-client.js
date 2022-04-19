@@ -12,7 +12,7 @@ function createApolloClient() {
   const url =
     process.env.NODE_ENV === "production"
       ? process.env.NEXT_PUBLIC_VERCEL_URL
-      : "localhost:3000";
+      : "localhost:8080";
   const baseUrl = `http${
     process.env.NODE_ENV === "production" ? "s" : ""
   }://${url}`;
@@ -24,20 +24,20 @@ function createApolloClient() {
       // uri: "https://www.wgmi.gg/api",
       uri:
         process.env.NODE_ENV === "development"
-          ? "http://localhost:3000/api"
+          ? "http://localhost:8080/api"
           : "https://www.wgmi.gg/api",
       // //   uri: "http://localhost:3000/api",
-      credentials: "same-origin", // Additional fetch() options like `credentials` or `headers`
+      credentials: "same-origin" // Additional fetch() options like `credentials` or `headers`
     }),
     cache: new InMemoryCache({
       typePolicies: {
         Query: {
           fields: {
-            projects: concatPagination(),
-          },
-        },
-      },
-    }),
+            projects: concatPagination()
+          }
+        }
+      }
+    })
   });
 }
 
@@ -55,10 +55,8 @@ export function initializeApollo(initialState = null) {
       // combine arrays using object equality (like in sets)
       arrayMerge: (destinationArray, sourceArray) => [
         ...sourceArray,
-        ...destinationArray.filter((d) =>
-          sourceArray.every((s) => !isEqual(d, s))
-        ),
-      ],
+        ...destinationArray.filter(d => sourceArray.every(s => !isEqual(d, s)))
+      ]
     });
 
     // Restore the cache with the merged data

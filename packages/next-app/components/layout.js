@@ -1,8 +1,8 @@
 import Head from "next/head";
 import nightwind from "nightwind/helper";
-import { Web3 } from "../lib/web3";
 
-import Header from "./header";
+import Header from "./Header";
+import SignMessage from "./SignMessage";
 
 const Layout = ({ children }) => {
   return (
@@ -28,26 +28,27 @@ gtag('config', 'G-GDL78VBY4Q');
         />
         <script dangerouslySetInnerHTML={{ __html: nightwind.init() }} />
       </Head>
-      <Web3>
-        <Header />
+      <Header />
+      <div className="flex w-full justify-center">
+        <SignMessage />
+      </div>
 
-        <main className="flex flex-col w-full sm:max-w-4xl mx-auto flex-1 p-4 sm:px-20 sm:py-8">
-          {children}
-        </main>
+      <main className="flex flex-col w-full sm:max-w-4xl mx-auto flex-1 p-4 sm:px-20 sm:py-8">
+        {children}
+      </main>
 
-        <footer className="flex items-center justify-center w-full h-12 border-t">
-          <p className="text-sm text-gray-400">
-            created and mainted by{" "}
-            <a
-              target="_blank"
-              href="https://twitter.com/piesrtasty"
-              className="text-gray-700 hover:text-purple-500"
-            >
-              @piesrtasty
-            </a>
-          </p>
-        </footer>
-      </Web3>
+      <footer className="flex items-center justify-center w-full h-12 border-t">
+        <p className="text-sm text-gray-400">
+          created and mainted by{" "}
+          <a
+            target="_blank"
+            href="https://twitter.com/piesrtasty"
+            className="text-gray-700 hover:text-purple-500"
+          >
+            @piesrtasty
+          </a>
+        </p>
+      </footer>
     </div>
   );
 };

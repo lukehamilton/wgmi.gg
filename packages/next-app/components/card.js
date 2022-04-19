@@ -12,21 +12,21 @@ import {
   faVoteYea,
   faWallet,
   faUserFriends,
-  faGem,
+  faGem
 } from "@fortawesome/pro-regular-svg-icons";
 import {
   faTwitter,
   faDiscord,
   faMedium,
   faInstagram,
-  faTelegram,
+  faTelegram
 } from "@fortawesome/free-brands-svg-icons";
 
 const links = [
   { key: "website", icon: faBrowser, name: "Website" },
   { key: "twitter", icon: faTwitter, name: "Twitter" },
   { key: "discord", icon: faDiscord, name: "Discord" },
-  { key: "opensea", icon: faShip, name: "OpenSea" },
+  { key: "opensea", icon: faShip, name: "OpenSea" }
 ];
 
 const icons = {
@@ -41,7 +41,7 @@ const icons = {
   wallet: faWallet,
   team: faUserFriends,
   twitter: faTwitter,
-  gem: faGem,
+  gem: faGem
 };
 
 export default function Card({ project, mainPage = false }) {
@@ -99,7 +99,7 @@ export default function Card({ project, mainPage = false }) {
       </div>
       <div className="border-t border-gray-200 px-4 py-5 sm:p-0">
         <dl className="sm:divide-y sm:divide-gray-200">
-          {links.map((link) => {
+          {links.map(link => {
             if (project[link.key]) {
               return (
                 <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -123,11 +123,11 @@ export default function Card({ project, mainPage = false }) {
               );
             }
           })}
-          {Object.keys(project.metadata).map((key) => {
+          {Object.keys(project.metadata).map(key => {
             if (key === "links") {
               return (
                 <>
-                  {project.metadata.links.map((link) => (
+                  {project.metadata.links.map(link => (
                     <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                       <dt className="flex items-center text-sm font-medium text-gray-500">
                         <FontAwesomeIcon

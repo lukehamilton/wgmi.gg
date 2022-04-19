@@ -8,48 +8,56 @@ datasource db {
 }
 
 model User {
-  id      Int    @id @default(autoincrement())
-  address String
-
-  Project      Project[]
-  Verification Verification[]
+  id            Int            @id @default(autoincrement())
+  address       String
+  projects      Project[]
+  links         Link[]
+  verifications Verification[]
 }
 
 model Project {
-  submitterId  Int
-  id           Int            @id @default(autoincrement())
-  name         String
-  slug         String         @unique
-  submitter    User           @relation(fields: [submitterId], references: [id])
-  website      String?
-  twitter      String?
-  discord      String?
-  opensea      String?
-  metadata     Json?
-  Verification Verification[]
+  id          Int    @id @default(autoincrement())
+  name        String
+  slug        String @unique
+  // Project belongs to a user
+  submitterId Int
+  submitter   User   @relation(fields: [submitterId], references: [id])
+  // Project has many links
+  links       Link[]
 }
 
-model Strategy {
-  id       Int     @id @default(autoincrement())
-  contract String
-  name     String
-  Asset    Asset[]
+model Link {
+  id            Int            @id @default(autoincrement())
+  // Link has a submitter
+  submitterId   Int
+  submitter     User           @relation(fields: [submitterId], references: [id])
+  // Link has a link type
+  typeId        Int
+  type          LinkType       @relation(fields: [typeId], references: [id])
+  // Link belongs to a project
+  projectId     Int
+  project       Project        @relation(fields: [projectId], references: [id])
+  // Link has 1 to many verifications
+  verifications Verification[]
 }
 
-model Asset {
-  id             Int           @id @default(autoincrement())
-  quantity       Int
-  strategy       Strategy      @relation(fields: [strategyId], references: [id])
-  Verification   Verification? @relation(fields: [verificationId], references: [id])
-  verificationId Int?
-  strategyId     Int
+model LinkType {
+  id    Int    @id @default(autoincrement())
+  name  String
+  slug  String @unique
+  image String
+  links Link[]
 }
 
 model Verification {
-  projectId  Int
-  verifierId Int
-  id         Int     @id @default(autoincrement())
-  project    Project @relation(fields: [projectId], references: [id])
-  verifier   User    @relation(fields: [verifierId], references: [id])
-  assets     Asset[]
+  id          Int    @id @default(autoincrement())
+  message     String
+  signature   String
+  // Verification has a submitter
+  submitterId Int
+  submitter   User   @relation(fields: [submitterId], references: [id])
+  // Verification belongs to a link
+  linkId      Int
+  Link        Link   @relation(fields: [linkId], references: [id])
+
 }

@@ -29,9 +29,9 @@ gtag('config', 'G-GDL78VBY4Q');
         <script dangerouslySetInnerHTML={{ __html: nightwind.init() }} />
       </Head>
       <Header />
-      <div className="flex w-full justify-center">
+      {/* <div className="flex w-full justify-center">
         <SignMessage />
-      </div>
+      </div> */}
 
       <main className="flex flex-col w-full sm:max-w-4xl mx-auto flex-1 p-4 sm:px-20 sm:py-8">
         {children}

@@ -10,7 +10,7 @@ import ConnectWallet from "./ConnectWallet";
 const Header = () => {
   const { active, error } = useWeb3React();
   return (
-    <div className="flex flex-col mb-8 w-full sm:max-w-4xl mx-auto flex-1 px-4 pt-4 sm:px-20 sm:pt-8">
+    <div className="flex flex-col w-full sm:max-w-4xl mx-auto px-4 pt-4 sm:px-20 sm:pt-8">
       <div className="flex flex-row items-center justify-between">
         <div className="flex flex-col sm:flex-row">
           <Link passHref href="/">

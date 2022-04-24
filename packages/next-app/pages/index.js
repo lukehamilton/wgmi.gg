@@ -6,7 +6,8 @@ import Layout from "../components/layout";
 export default function Home() {
   return (
     <Layout>
-      <List />
+      {/* <h1>COOL</h1> */}
+      {/* <List /> */}
     </Layout>
   );
 }

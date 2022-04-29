@@ -37,6 +37,7 @@ export interface NexusGenScalars {
 }
 
 export interface NexusGenObjects {
+  Mutation: {};
   Project: { // root type
     discord?: string | null; // String
     id?: number | null; // Int
@@ -65,6 +66,9 @@ export type NexusGenRootTypes = NexusGenObjects
 export type NexusGenAllTypes = NexusGenRootTypes & NexusGenScalars
 
 export interface NexusGenFieldTypes {
+  Mutation: { // field return type
+    createProject: NexusGenRootTypes['Project'] | null; // Project
+  }
   Project: { // field return type
     discord: string | null; // String
     id: number | null; // Int
@@ -86,6 +90,9 @@ export interface NexusGenFieldTypes {
 }
 
 export interface NexusGenFieldTypeNames {
+  Mutation: { // field return type name
+    createProject: 'Project'
+  }
   Project: { // field return type name
     discord: 'String'
     id: 'Int'
@@ -107,6 +114,11 @@ export interface NexusGenFieldTypeNames {
 }
 
 export interface NexusGenArgTypes {
+  Mutation: {
+    createProject: { // args
+      name?: string | null; // String
+    }
+  }
   Query: {
     project: { // args
       slug?: string | null; // String

@@ -9,7 +9,7 @@ import {
   nullable,
   objectType,
   stringArg,
-  scalarType,
+  scalarType
 } from "nexus";
 
 import path from "path";
@@ -21,7 +21,7 @@ const JSONScalar = scalarType({
   asNexusMethod: "json",
   serialize: GraphQLJSONObject.serialize,
   parseValue: GraphQLJSONObject.parseValue,
-  parseLiteral: GraphQLJSONObject.parseLiteral,
+  parseLiteral: GraphQLJSONObject.parseLiteral
 });
 
 const User = objectType({
@@ -29,7 +29,7 @@ const User = objectType({
   definition(t) {
     t.int("id");
     t.string("address");
-  },
+  }
 });
 
 const Project = objectType({
@@ -44,7 +44,7 @@ const Project = objectType({
     t.string("opensea");
     t.string("opensea");
     t.json("metadata");
-  },
+  }
 });
 
 const Query = objectType({
@@ -56,39 +56,54 @@ const Query = objectType({
         return prisma.project.findMany({
           orderBy: [
             {
-              name: "asc",
-            },
-          ],
+              name: "asc"
+            }
+          ]
         });
-      },
+      }
     });
     t.field("project", {
       type: "Project",
       args: {
-        slug: stringArg(),
+        slug: stringArg()
       },
       resolve: async (_, { slug }) => {
         const project = await prisma.project.findUnique({
-          where: { slug },
+          where: { slug }
         });
         return project;
-      },
+      }
     });
-  },
+  }
+});
+
+const Mutation = objectType({
+  name: "Mutation",
+  definition(t) {
+    t.field("createProject", {
+      type: "Project",
+      args: {
+        name: stringArg()
+      },
+      resolve: async (_, { name }, ctx) => {
+        console.log("----- ");
+      }
+    });
+  }
 });
 
 export const schema = makeSchema({
-  types: [Query, Project, User, JSONScalar],
+  types: [Query, Mutation, Project, User, JSONScalar],
   outputs: {
     typegen: path.join(process.cwd(), "generated/nexus-typegen.ts"),
-    schema: path.join(process.cwd(), "generated/schema.graphql"),
-  },
+    schema: path.join(process.cwd(), "generated/schema.graphql")
+  }
 });
 
 export const config = {
   api: {
-    bodyParser: false,
-  },
+    bodyParser: false
+  }
 };
 
 const apolloServer = new ApolloServer({ schema });
@@ -100,7 +115,7 @@ async function getApolloServerHandler() {
     await apolloServer.start();
 
     apolloServerHandler = apolloServer.createHandler({
-      path: "/api",
+      path: "/api"
     });
   }
 

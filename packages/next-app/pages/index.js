@@ -12,10 +12,10 @@ export default function Home() {
   );
 }
 
-// export async function getStaticProps(context) {
-//   const apolloClient = initializeApollo(null);
-//   await apolloClient.query({
-//     query: PROJECTS
-//   });
-//   return addApolloState(apolloClient, { props: {} });
-// }
+export async function getStaticProps(context) {
+  const apolloClient = initializeApollo(null);
+  await apolloClient.query({
+    query: PROJECTS
+  });
+  return addApolloState(apolloClient, { props: {} });
+}

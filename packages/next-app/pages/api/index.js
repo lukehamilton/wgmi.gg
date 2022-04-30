@@ -38,11 +38,6 @@ const Project = objectType({
     t.int("id");
     t.string("name");
     t.string("slug");
-    t.string("website");
-    t.string("twitter");
-    t.string("discord");
-    t.string("opensea");
-    t.string("opensea");
     t.json("metadata");
   }
 });
@@ -86,7 +81,7 @@ const Mutation = objectType({
         name: stringArg()
       },
       resolve: async (_, { name }, ctx) => {
-        console.log("----- ");
+        console.log("----- name------- ", name);
       }
     });
   }

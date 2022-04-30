@@ -39,14 +39,10 @@ export interface NexusGenScalars {
 export interface NexusGenObjects {
   Mutation: {};
   Project: { // root type
-    discord?: string | null; // String
     id?: number | null; // Int
     metadata?: NexusGenScalars['JSON'] | null; // JSON
     name?: string | null; // String
-    opensea?: string | null; // String
     slug?: string | null; // String
-    twitter?: string | null; // String
-    website?: string | null; // String
   }
   Query: {};
   User: { // root type
@@ -70,14 +66,10 @@ export interface NexusGenFieldTypes {
     createProject: NexusGenRootTypes['Project'] | null; // Project
   }
   Project: { // field return type
-    discord: string | null; // String
     id: number | null; // Int
     metadata: NexusGenScalars['JSON'] | null; // JSON
     name: string | null; // String
-    opensea: string | null; // String
     slug: string | null; // String
-    twitter: string | null; // String
-    website: string | null; // String
   }
   Query: { // field return type
     project: NexusGenRootTypes['Project'] | null; // Project
@@ -94,14 +86,10 @@ export interface NexusGenFieldTypeNames {
     createProject: 'Project'
   }
   Project: { // field return type name
-    discord: 'String'
     id: 'Int'
     metadata: 'JSON'
     name: 'String'
-    opensea: 'String'
     slug: 'String'
-    twitter: 'String'
-    website: 'String'
   }
   Query: { // field return type name
     project: 'Project'

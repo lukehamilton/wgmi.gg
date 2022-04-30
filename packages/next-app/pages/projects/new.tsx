@@ -1,13 +1,31 @@
 import Layout from "../../components/layout";
 import LinkInput, { DEFAULT_LINKS } from "components/LinkInput";
 import { useRouter } from "next/router";
+import { useMutation } from "@apollo/client";
+import { CREATE_PROJECT } from "../../data/mutations";
 
 export default function NewProject() {
   console.log("DEFAULT_LINKS", DEFAULT_LINKS);
+  const [createProject, { data, loading, error }] = useMutation(CREATE_PROJECT);
+
   const router = useRouter();
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    createProject({
+      variables: {
+        name: "Luke"
+      }
+    });
+    console.log("COOOOOOL");
+  };
+
   return (
     <Layout>
-      <form className="space-y-8 divide-y divide-gray-200">
+      <form
+        className="space-y-8 divide-y divide-gray-200"
+        onSubmit={handleSubmit}
+      >
         <div className="space-y-8 divide-y divide-gray-200">
           <div>
             <div>

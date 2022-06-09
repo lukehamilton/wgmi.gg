@@ -1,124 +1,289 @@
+import { useState } from "react";
+import { useWeb3React } from "@web3-react/core";
 import Layout from "../../components/layout";
-import LinkInput, { DEFAULT_LINKS } from "components/LinkInput";
+import { isValidURL } from "lib/utils";
+// import LinkInput, { DEFAULT_LINKS } from "components/LinkInput";
 import { useRouter } from "next/router";
+
 import { useMutation } from "@apollo/client";
 import { CREATE_PROJECT } from "../../data/mutations";
 
+import { useForm } from "react-hook-form";
+
+import {
+  Box,
+  Button,
+  Divider,
+  Flex,
+  FormControl,
+  FormErrorMessage,
+  FormLabel,
+  Input,
+  Stack,
+  useColorModeValue,
+  Container,
+  StackDivider,
+  Text,
+  Avatar,
+  FormHelperText,
+  InputGroup,
+  InputLeftAddon,
+  Textarea,
+  Alert,
+  AlertIcon
+} from "@chakra-ui/react";
+
+const LINK_WEBSITE = "website";
+const LINK_TWITTER = "twitter";
+const LINK_OPENSEA = "opensea";
+
+const LINKS = {
+  [LINK_WEBSITE]: {
+    name: "Website",
+    slug: LINK_WEBSITE,
+    displayPrefix: "http://",
+    validationPrefix: "http://"
+  },
+  [LINK_TWITTER]: {
+    name: "Twitter",
+    slug: LINK_TWITTER,
+    displayPrefix: "twitter.com/",
+    validationPrefix: "http://twitter.com/"
+  },
+  [LINK_OPENSEA]: {
+    name: "OpenSea",
+    slug: LINK_OPENSEA,
+    displayPrefix: "opensea.io/collection/",
+    validationPrefix: "http://opensea.io/collection/"
+  }
+};
+
+const DEFAULT_LINKS = [LINK_WEBSITE, LINK_TWITTER, LINK_OPENSEA];
+
 export default function NewProject() {
-  console.log("DEFAULT_LINKS", DEFAULT_LINKS);
+  const {
+    handleSubmit,
+    register,
+    getValues,
+    formState: { errors, isSubmitting, isDirty }
+  } = useForm({});
+
+  // const formInfo = useForm({});
+  // console.log("formInfo", formInfo);
+
+  const { library, chainId, account, activate, deactivate, active } =
+    useWeb3React();
+
   const [createProject, { data, loading, error }] = useMutation(CREATE_PROJECT);
 
-  const router = useRouter();
+  const [isMissingLink, setIsMissingLink] = useState(null);
 
-  const handleSubmit = e => {
-    e.preventDefault();
-    createProject({
-      variables: {
-        name: "Luke"
-      }
-    });
-    console.log("COOOOOOL");
+  const signMessage = async () => {
+    // if (!library) return;
+    // try {
+    //   const signature = await library.provider.request({
+    //     method: "personal_sign",
+    //     params: [message, account]
+    //   });
+    //   // setSignedMessage(message);
+    //   // setSignature(signature);
+    // } catch (error) {
+    //   // setError(error);
+    // }
+  };
+
+  function onSubmit(values) {
+    const links = Object.fromEntries(
+      Object.entries(values).filter(
+        ([key, value]) => value !== "" && key !== "name"
+      )
+    );
+
+    const message = {
+      name: values.name,
+      links
+    };
+
+    console.log("---- submitting message----", message);
+    // console.log("filteredValues", filteredValues);
+    // console.log("isDirty", isDirty);
+    // const keys = Object.keys(values).filter(
+    //   key => DEFAULT_LINKS.includes(key) && values[key] !== ""
+    // );
+    // const linkFound = keys.length > 0;
+    // const missingLink = !linkFound && isDirty;
+    // if (missingLink) {
+    //   setIsMissingLink(true);
+    // } else {
+    //   setIsMissingLink(false);
+    //   // Prepare links to submit
+    //   console.log("we submit the form");
+    //   console.log("values", values);
+    //   createProject({
+    //     variables: {
+    //       name: "Luke",
+    //       links: ["a", "b", "c"]
+    //     }
+    //   });
+    // }
+
+    // return new Promise(resolve => {
+    //   setTimeout(() => {
+    //     alert(JSON.stringify(values, null, 2));
+    //     resolve();
+    //   }, 3000);
+    // });
+  }
+
+  const atLeastOneLink = () => {
+    const values = getValues();
+    const keys = Object.keys(values).filter(
+      key => DEFAULT_LINKS.includes(key) && values[key] !== ""
+    );
+    const linkFound = keys.length > 0;
+    return linkFound;
+  };
+
+  const handleClick = () => {
+    const values = getValues();
+    console.log("values", values);
   };
 
   return (
     <Layout>
-      <form
-        className="space-y-8 divide-y divide-gray-200"
-        onSubmit={handleSubmit}
-      >
-        <div className="space-y-8 divide-y divide-gray-200">
-          <div>
-            <div>
-              {/* <h2 className="sm:text-2xl font-bold leading-7 text-gray-900 text-3xl sm:truncate">
-                Add a project
-              </h2> */}
-              <h3 className="text-lg leading-6 font-medium text-gray-900">
-                Tell us more about this project
-              </h3>
-              <p className="mt-1 text-sm text-gray-500">
-                We’ll need its name and links.
-              </p>
-            </div>
-
-            <div className="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
-              <div className="sm:col-span-3">
-                <div className="grid grid-cols-1 gap-y-6">
-                  <div className="sm:col-span-1">
-                    {" "}
-                    <label
-                      htmlFor="first-name"
-                      className="block text-sm font-medium text-gray-700"
-                    >
-                      Name
-                    </label>
-                    <div className="mt-1">
-                      <input
-                        type="text"
-                        name="first-name"
-                        id="first-name"
-                        autoComplete="given-name"
-                        className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
-                      />
-                    </div>
-                  </div>
-                  {/* <div className="sm:col-span-1">
-                    {" "}
-                    <label
-                      htmlFor="first-name"
-                      className="block text-sm font-medium text-gray-700"
-                    >
-                      Slug
-                    </label>
-                    <div className="mt-1">
-                      <input
-                        type="text"
-                        name="first-name"
-                        id="first-name"
-                        autoComplete="given-name"
-                        className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
-                      />
-                    </div>
-                    <p className="mt-2 text-sm text-gray-500">
-                      http://verifiedlinks.xyz/slug
-                    </p>
-                  </div> */}
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="pt-8">
-            <div>
-              <h3 className="text-lg leading-6 font-medium text-gray-900">
-                Links
-              </h3>
-            </div>
-            <div className="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
-              {DEFAULT_LINKS.map(type => (
-                <LinkInput type={type} className="sm:col-span-4" />
-              ))}
-            </div>
-          </div>
-        </div>
-
-        <div className="pt-8">
-          <div className="flex justify-start">
-            <button
-              onClick={() => router.back()}
-              type="button"
-              className="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+      <button onClick={handleClick}>Click</button>
+      <Container py={{ base: "4", md: "8" }}>
+        <Box onSubmit={handleSubmit(onSubmit)} as="form">
+          <Stack spacing="5" divider={<StackDivider />}>
+            <Stack
+              direction={{ base: "column", lg: "row" }}
+              spacing={{ base: "5", lg: "8" }}
+              justify="space-between"
             >
-              Cancel
-            </button>
-            <button
-              type="submit"
-              className="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              <Box flexShrink={0}>
+                <Text fontSize="lg" fontWeight="medium">
+                  Tell us more about this product
+                </Text>
+                <Text color="muted" fontSize="sm">
+                  We’ll need its name, tagline, links, topics and description.
+                </Text>
+              </Box>
+              <Box
+                bg="bg-surface"
+                boxShadow={useColorModeValue("sm", "sm-dark")}
+                borderRadius="lg"
+                flex="1"
+                maxW={{ lg: "3xl" }}
+              >
+                <Stack
+                  spacing="5"
+                  px={{ base: "4", md: "6" }}
+                  py={{ base: "5", md: "6" }}
+                >
+                  <Stack spacing="6" direction={{ base: "column", md: "row" }}>
+                    <FormControl id="firstName" isInvalid={errors.name}>
+                      <FormLabel>Name of the project</FormLabel>
+                      <Input
+                        id="name"
+                        {...register("name", {
+                          required: "Project name is required"
+                        })}
+                      />
+                      <FormErrorMessage>
+                        {errors.name && errors.name.message}
+                      </FormErrorMessage>
+                    </FormControl>
+                  </Stack>
+                </Stack>
+              </Box>
+            </Stack>
+
+            <Stack
+              direction={{ base: "column", lg: "row" }}
+              spacing={{ base: "5", lg: "8" }}
+              justify="space-between"
             >
-              Save
-            </button>
-          </div>
-        </div>
-      </form>
+              <Box flexShrink={0}>
+                <Text fontSize="lg" fontWeight="medium">
+                  Links
+                </Text>
+                <Text color="muted" fontSize="sm">
+                  Where can others learn more
+                </Text>
+              </Box>
+              <Box
+                bg="bg-surface"
+                boxShadow={useColorModeValue("sm", "sm-dark")}
+                borderRadius="lg"
+                flex="1"
+                maxW={{ lg: "3xl" }}
+              >
+                <Stack
+                  spacing="5"
+                  px={{ base: "4", md: "6" }}
+                  py={{ base: "5", md: "6" }}
+                >
+                  {isMissingLink && (
+                    <Alert status="error">
+                      <AlertIcon />
+                      At least 1 link is required
+                    </Alert>
+                  )}
+                  {DEFAULT_LINKS.map(link => {
+                    const { name, displayPrefix, validationPrefix, slug } =
+                      LINKS[link];
+                    return (
+                      <FormControl
+                        id="website"
+                        key={slug}
+                        isInvalid={errors[slug]}
+                        // isInvalid={errors[slug]}
+                      >
+                        <FormLabel>{name}</FormLabel>
+                        <InputGroup>
+                          {displayPrefix && (
+                            <InputLeftAddon>{displayPrefix}</InputLeftAddon>
+                          )}
+                          <Input
+                            id={slug}
+                            {...register(slug, {
+                              validate: value => {
+                                const url = validationPrefix + value;
+                                return (
+                                  (isValidURL(url) && value != "") ||
+                                  value == "" ||
+                                  "😳 Oops, this isn't a valid url."
+                                );
+                              }
+                            })}
+                          />
+                        </InputGroup>
+                        <FormErrorMessage>
+                          {errors[slug] && errors[slug].message}
+                        </FormErrorMessage>
+                      </FormControl>
+                    );
+                  })}
+                </Stack>
+                <Divider />
+                <Flex
+                  direction="row-reverse"
+                  py="4"
+                  px={{ base: "4", md: "6" }}
+                >
+                  <Button
+                    type="submit"
+                    variant="primary"
+                    isLoading={isSubmitting}
+                  >
+                    Save
+                  </Button>
+                </Flex>
+              </Box>
+            </Stack>
+          </Stack>
+        </Box>
+      </Container>
     </Layout>
   );
 }

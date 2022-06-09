@@ -2,7 +2,7 @@ export const classNames = (...classes) => {
   return classes.filter(Boolean).join(" ");
 };
 
-const isValidURL = str => {
+export const isValidURL = str => {
   var pattern = new RegExp(
     "^(https?:\\/\\/)?" + // protocol
       "((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|" + // domain name

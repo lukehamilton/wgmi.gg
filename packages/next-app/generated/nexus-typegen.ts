@@ -104,6 +104,7 @@ export interface NexusGenFieldTypeNames {
 export interface NexusGenArgTypes {
   Mutation: {
     createProject: { // args
+      links?: Array<string | null> | null; // [String]
       name?: string | null; // String
     }
   }

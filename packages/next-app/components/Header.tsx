@@ -1,7 +1,7 @@
 import { useWeb3React } from "@web3-react/core";
 import Link from "next/link";
 import ThemeToggle from "./theme-toggle";
-import Account from "./Account";
+import Account from "./AccountOld";
 import { PlusIcon } from "@heroicons/react/solid";
 import ConnectWallet from "./ConnectWallet";
 

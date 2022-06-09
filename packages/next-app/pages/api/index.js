@@ -7,6 +7,7 @@ import {
   makeSchema,
   nonNull,
   nullable,
+  list,
   objectType,
   stringArg,
   scalarType
@@ -78,10 +79,12 @@ const Mutation = objectType({
     t.field("createProject", {
       type: "Project",
       args: {
-        name: stringArg()
+        name: stringArg(),
+        links: list(stringArg()) // or list('String') -> [String]
       },
-      resolve: async (_, { name }, ctx) => {
+      resolve: async (_, { name, links }, ctx) => {
         console.log("----- name------- ", name);
+        console.log("---- links-----", links);
       }
     });
   }

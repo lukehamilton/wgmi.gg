@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <Layout>
       {/* <h1>COOL</h1> */}
-      {/* <List /> */}
+      {/* // <List /> */}
     </Layout>
   );
 }

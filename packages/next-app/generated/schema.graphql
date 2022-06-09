@@ -5,7 +5,7 @@
 scalar JSON
 
 type Mutation {
-  createProject(name: String): Project
+  createProject(links: [String], name: String): Project
 }
 
 type Project {

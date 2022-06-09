@@ -10,6 +10,11 @@
   },
   "dependencies": {
     "@apollo/client": "^3.4.16",
+    "@chakra-ui/icons": "^1.1.7",
+    "@chakra-ui/pro-theme": "^0.0.47",
+    "@chakra-ui/react": "^1.8.8",
+    "@emotion/react": "^11",
+    "@emotion/styled": "^11",
     "@ethersproject/providers": "^5.6.2",
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
     "@fortawesome/free-brands-svg-icons": "^5.15.4",
@@ -32,6 +37,7 @@
     "apollo-server-micro": "^3.3.0",
     "deepmerge": "^4.2.2",
     "ethers": "^5.6.1",
+    "framer-motion": "^6",
     "graphql": "^16.3.0",
     "graphql-type-json": "^0.3.2",
     "lodash.isequal": "^4.5.0",
@@ -44,8 +50,11 @@
     "prisma": "^3.12.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-hook-form": "^7.30.0",
+    "react-icons": "^4.3.1",
     "react-jazzicon": "^1.0.3",
-    "sass": "^1.43.4"
+    "sass": "^1.43.4",
+    "walletlink": "^2.5.0"
   },
   "devDependencies": {
     "@types/node": "^17.0.23",

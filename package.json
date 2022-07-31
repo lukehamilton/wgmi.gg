@@ -1,29 +1,56 @@
 {
-  "name": "@verified-links/momorepo",
-  "private": true,
+  "name": "verified-links",
   "version": "1.0.0",
-  "keywords": [
-    "ethereum",
-    "react",
-    "uniswap",
-    "workspaces",
-    "yarn"
-  ],
+  "main": "index.js",
   "scripts": {
-    "dev": "yarn workspace @verified-links/next-app dev",
-    "chain": "yarn workspace @verified-links/hardhat chain"
+    "dev": "next dev -p 8080",
+    "postinstall_c": "prisma generate",
+    "build": "next build",
+    "start": "next start"
   },
-  "workspaces": {
-    "packages": [
-      "packages/*"
-    ],
-    "nohoist": [
-      "**/hardhat",
-      "**/hardhat/**",
-      "**/hardhat-ts",
-      "**/hardhat-ts/**"
-    ]
+  "dependencies": {
+    "@apollo/client": "^3.4.16",
+    "@chakra-ui/icons": "^1.1.7",
+    "@chakra-ui/pro-theme": "^0.0.47",
+    "@chakra-ui/react": "^1.8.8",
+    "@emotion/react": "^11",
+    "@emotion/styled": "^11",
+    "@ethersproject/providers": "^5.6.2",
+    "@headlessui/react": "^1.5.0",
+    "@heroicons/react": "^1.0.4",
+    "@prisma/client": "4",
+    "@rainbow-me/rainbowkit": "^0.4.5",
+    "@tailwindcss/forms": "^0.5.0",
+    "apollo-server-micro": "^3.3.0",
+    "deepmerge": "^4.2.2",
+    "ethers": "^5.6.9",
+    "framer-motion": "^6",
+    "graphql": "^16.3.0",
+    "graphql-type-json": "^0.3.2",
+    "lodash.isequal": "^4.5.0",
+    "micro": "^9.3.4",
+    "micro-cors": "^0.1.1",
+    "next": "latest",
+    "next-themes": "^0.0.15",
+    "nexus": "^1.3.0",
+    "nightwind": "^1.1.12",
+    "prisma": "4",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-hook-form": "^7.30.0",
+    "react-icons": "^4.3.1",
+    "react-jazzicon": "^1.0.3",
+    "sass": "^1.43.4",
+    "wagmi": "^0.6.0",
+    "walletlink": "^2.5.0"
   },
-  "dependencies": {},
-  "devDependencies": {}
+  "devDependencies": {
+    "@types/node": "^17.0.23",
+    "@types/react": "^18.0.1",
+    "autoprefixer": "^10.4.2",
+    "postcss": "^8.4.8",
+    "tailwindcss": "^3.0.23",
+    "typescript": "^4.6.3"
+  },
+  "packageManager": "yarn@3.2.2"
 }

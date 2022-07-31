@@ -1,0 +1,66 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("POSTGRES_URL")
+}
+
+model User {
+  id            Int            @id @default(autoincrement())
+  account       String         @unique
+  projects      Project[]
+  links         Link[]
+  verifications Verification[]
+}
+
+model Project {
+  id            Int            @id @default(autoincrement())
+  name          String
+  slug          String         @unique
+  // Project belongs to a user
+  submitterId   Int
+  submitter     User           @relation(fields: [submitterId], references: [id])
+  // Project has many links
+  links         Link[]
+  verifications Verification[]
+}
+
+model Link {
+  id            Int            @id @default(autoincrement())
+  // Link has a submitter
+  submitterId   Int
+  submitter     User           @relation(fields: [submitterId], references: [id])
+  // Link has a link type
+  typeId        Int
+  type          LinkType       @relation(fields: [typeId], references: [id])
+  // Link belongs to a project
+  projectId     Int
+  project       Project        @relation(fields: [projectId], references: [id])
+  // Link has 1 to many verifications
+  verifications Verification[]
+}
+
+model LinkType {
+  id    Int    @id @default(autoincrement())
+  name  String
+  slug  String @unique
+  image String
+  links Link[]
+}
+
+model Verification {
+  id          Int      @id @default(autoincrement())
+  message     String
+  signature   String
+  // Verification has a submitter
+  submitterId Int
+  submitter   User     @relation(fields: [submitterId], references: [id])
+  // Verification belongs to 1 to many links
+  links       Link[]
+  Project     Project? @relation(fields: [projectId], references: [id])
+  projectId   Int?
+}
+
+// If verification has a project that means it's the project verification, otherwise not
